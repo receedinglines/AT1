@@ -1,15 +1,32 @@
-<form method="post" action="{% url 'login' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!-- Add your CSS references if needed -->
+</head>
+<body>
+
+<h2>Login</h2>
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<form method="post" action="{% url 'user_login' %}">
     {% csrf_token %}
     <label for="username">Username:</label>
-    <input type="text" name="username" id="username" required>
-    
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password" required>
-    
-    <input type="submit" value="Login">
-    
-    {% if error %}
-      <p>{{ error }}</p>
-    {% endif %}
-  </form>
+    <input type="text" name="username" id="username" required><br><br>
   
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required><br><br>
+  
+    <input type="submit" value="Login">
+</form>
+
+<p>
+    <a href="{% url 'register' %}">Register</a>
+</p>
+
+</body>
+</html>

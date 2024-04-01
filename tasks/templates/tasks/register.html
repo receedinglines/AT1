@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <!-- Style the button to make it look more clickable -->
+    <style>
+        .button-style {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+        .button-style:hover {
+            background-color: #e2e6ea;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Register</h2>
+
+{% if error %}
+  <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    <label for="username">Username:</label><br>
+    <input type="text" name="username" id="username" required><br><br>
+  
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" id="password" required><br><br>
+  
+    <input type="submit" value="Register" class="button-style">
+</form>
+
+<!-- Optionally, if you want a back link to the login page -->
+<p>
+    <a href="{% url 'user_login' %}" class="button-style">Back to Login</a>
+</p>
+
+</body>
+</html>
