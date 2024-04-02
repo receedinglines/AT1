@@ -1,0 +1,19 @@
+{% extends "base.html" %} <!-- Replace with your base template if you have one -->
+
+{% block content %}
+
+<h1>Quiz Results</h1>
+
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<!-- Displaying the score -->
+<p>Your score: {{ score }}/{{ total_questions }}</p>
+<a href="{% url 'start_math_quiz' %}">Retake the Quiz</a>
+<a href="{% url 'option_selection' %}">Back to Options</a>
+{% endblock %}
