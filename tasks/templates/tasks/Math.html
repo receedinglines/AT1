@@ -1,36 +1,31 @@
-<h1>Math Quiz</h1>
-<p>Welcome to the Math section!</p>
 
-{% if messages %}
-    {% for message in messages %}
-        <div class="{{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Quiz</title>
+</head>
+<body>
+    <h1>Math Quiz</h1>
+    {% if question %}
+        <p>{{ question.text }}</p>
+        <!-- If you have answer choices in your model, iterate over them here -->
+    {% else %}
+        <p>The quiz would go here</p>
+        {% extends 'base.html' %}  <!-- or your base template if different -->
 
-<h2>{{ question.text }}</h2>
+{% block content %}
+    <h1>Quiz Completed!</h1>
+    <p>Congratulations on finishing the quiz!</p>
 
-<form method="post" action="{% url 'math_quiz' question.id %}">
-    {% csrf_token %}
-    {% for answer in question.answers.all %}
-        <label>
-            <input type="radio" name="answer" value="{{ answer.text }}" required>
-            {{ answer.text }}
-        </label><br>
-    {% endfor %}
-    <input type="submit" value="Answer" name="answer_btn">
-    <input type="submit" value="Skip" name="skip">
-    <form method="post" action="{% url 'math_quiz' question_id=question.id %}">
+    <!-- The button to take the user to the rewards page -->
+    <form action="{% url 'rewards_page' %}" method="get">
+        <button type="submit">Go to Rewards Page</button>
     </form>
-    
-    <a href="{% url 'math_quiz' question_id=prev_question_id %}">Previous</a>
-    <a href="{% url 'math_quiz' question_id=next_question_id %}">Next</a>
-    
-</form>
+{% endblock %}
 
-{% if prev_question_id %}
-    <a href="{% url 'math_quiz' prev_question_id %}">Previous Question</a>
-{% endif %}
+    {% endif %}
 
-Current Question ID: {{ question.id }}<br>
-Next Question ID: {{ next_question_id }}<br>
-Previous Question ID: {{ prev_question_id }}<br>
+    
+</body>
+</html>

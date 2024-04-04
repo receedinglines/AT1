@@ -1,15 +1,15 @@
 from django.db import models
 
 class Question(models.Model):
-    text = models.TextField(verbose_name="Question Text")
+    text = models.CharField(max_length=200)
 
     def __str__(self):
         return self.text
 
-class Answer(models.Model):
-    question = models.ForeignKey(Question, related_name='answers', on_delete=models.CASCADE)
-    text = models.CharField(max_length=255, verbose_name="Answer Text")
-    is_correct = models.BooleanField(default=False, verbose_name="Is this the correct answer?")
+class Choice(models.Model):
+    question = models.ForeignKey(Question, related_name='choices', on_delete=models.CASCADE)
+    text = models.CharField(max_length=200)
+    is_correct = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.text} ({'correct' if self.is_correct else 'incorrect'})"
+        return self.text
