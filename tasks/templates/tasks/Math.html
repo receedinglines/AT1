@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,21 +10,7 @@
         <p>{{ question.text }}</p>
         <!-- If you have answer choices in your model, iterate over them here -->
     {% else %}
-        <p>The quiz would go here</p>
-        {% extends 'base.html' %}  <!-- or your base template if different -->
-
-{% block content %}
-    <h1>Quiz Completed!</h1>
-    <p>Congratulations on finishing the quiz!</p>
-
-    <!-- The button to take the user to the rewards page -->
-    <form action="{% url 'rewards_page' %}" method="get">
-        <button type="submit">Go to Rewards Page</button>
-    </form>
-{% endblock %}
-
+        <p>Quiz would go here</p>
     {% endif %}
-
-    
 </body>
 </html>

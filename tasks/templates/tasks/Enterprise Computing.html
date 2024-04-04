@@ -1,2 +1,16 @@
-<h1>Enterprise Computing Quiz</h1>
-<p>Welcome to the Enterprise Computing section!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enterprise Computing</title>
+</head>
+<body>
+    <h1>Enterprise Computing quiz</h1>
+    {% if question %}
+        <p>{{ question.text }}</p>
+        <!-- If you have answer choices in your model, iterate over them here -->
+    {% else %}
+        <p>Quiz would go here</p>
+    {% endif %}
+</body>
+</html>

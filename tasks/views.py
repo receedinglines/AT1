@@ -59,34 +59,14 @@ def register(request):
     else:
         return render(request, 'tasks/register.html')
     
-# views.py
-
-from django.shortcuts import get_object_or_404, render, redirect, reverse
-from .models import Question
-from django.contrib import messages
-
-# ... other views ...
-
-from django.shortcuts import redirect
-from django.contrib import messages
 
 from django.shortcuts import render
 from .models import Question  # Ensure you have a Question model in models.py
 
 def math_quiz(request):
-
     question = Question.objects.first()  # Get the first question from your database
     if question is not None:
         return render(request, 'math_quiz.html', {'question': question})
     else:
         # If no question exists, you can redirect or show a message
         return render(request, 'math_quiz.html', {'error': 'No questions available.'})
-    
-
-    
-
-
-
-def math_quiz(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'math_quiz.html', {'question': question})
